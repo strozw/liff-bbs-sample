@@ -14,4 +14,4 @@ certificates
 
 .env.local
 
-/amplify_outputs.json
+amplify_outputs.json
