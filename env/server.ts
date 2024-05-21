@@ -5,7 +5,7 @@ export const serverEnv = createEnv({
   client: {},
   runtimeEnv: {
     COOKIE_NAME_LIFF_ACCESS_TOKEN:
-      process.env.NEXT_PUBLIC_COOKIE_NAME_LIFF_ACCESS_TOKEN,
+      process.env.NEXT_PUBLIC_LIFF_ACCESS_TOKEN_COOKIE,
   },
 
   server: {
