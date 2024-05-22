@@ -1,20 +1,15 @@
 import { createMiddleware } from 'hono/factory';
-import { getCookie } from 'hono/cookie';
-import { serverEnv } from '@/env/server';
-import { lineLoginApi } from '@/app/_lib/adapters/line-login';
+import { getCurrentUser } from '@/app/_lib/interactors/user-interactors';
 
 export const lineLoginRequired = createMiddleware(async (context, next) => {
   try {
-    const accessToken = getCookie(
-      context,
-      serverEnv.COOKIE_NAME_LIFF_ACCESS_TOKEN,
-    );
+    const user = await getCurrentUser();
 
-    if (!accessToken) {
+    if (!user) {
       throw new Error('access token is nothing');
     }
 
-    await lineLoginApi.verify({ accessToken });
+    context.set('currentUser', user);
 
     await next();
   } catch {

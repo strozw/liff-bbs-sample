@@ -38,7 +38,6 @@ export const createUser = async (
 };
 
 export const getCurrentUser = React.cache(async () => {
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   const accessToken = getLineAccessTokenFromCookie();
 
   const user = await getUserByCurrentLineAccount(accessToken);
