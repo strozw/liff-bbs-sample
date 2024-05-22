@@ -15,3 +15,5 @@ certificates
 .env.local
 
 amplify_outputs.json
+
+.npm
