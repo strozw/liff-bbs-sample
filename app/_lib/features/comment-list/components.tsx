@@ -29,12 +29,12 @@ export const CommentList = ({ threadId }: { threadId: string }) => {
           <Avatar className="size-10">
             <AvatarImage alt="@shadcn" src="/placeholder-avatar.jpg" />
             <AvatarFallback>
-              {comment.author.name?.substring(0, 2)}
+              {comment?.author?.name?.substring(0, 2)}
             </AvatarFallback>
           </Avatar>
           <div className="grid gap-2">
             <div className="flex items-center gap-2">
-              <div className="font-medium">{comment.author.name}</div>
+              <div className="font-medium">{comment?.author?.name}</div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
                 {comment.createdAt}
               </div>

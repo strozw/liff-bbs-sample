@@ -31,7 +31,9 @@ export const ThreadList = () => {
             <Card className="m-2 grid grid-cols-[3rem_1fr] items-center gap-4 p-2 ring-black focus:ring-2">
               <Avatar className="size-12 border">
                 <AvatarImage alt="@shadcn" src="/placeholder-user.jpg" />
-                <AvatarFallback>{thread?.author?.name}</AvatarFallback>
+                <AvatarFallback>
+                  {thread?.author?.name?.substring(0, 2)}
+                </AvatarFallback>
               </Avatar>
 
               <div className="grid gap-1">
