@@ -15,6 +15,7 @@ export const ThreadList = () => {
   const { data, isSuccess } = useQuery({
     queryFn: async () => {
       const res = await bffApi.api.threads.recent.$get();
+
       const data = await res.json();
 
       return data;

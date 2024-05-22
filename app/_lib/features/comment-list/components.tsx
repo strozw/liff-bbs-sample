@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { bffApi } from '../../adapters/bff/client';
+import { bffApi } from '@/app/_lib/adapters/bff/client';
 import {
   Avatar,
   AvatarFallback,

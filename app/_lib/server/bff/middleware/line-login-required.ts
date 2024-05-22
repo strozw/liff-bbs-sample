@@ -1,7 +1,7 @@
 import { createMiddleware } from 'hono/factory';
 import { getCookie } from 'hono/cookie';
 import { serverEnv } from '@/env/server';
-import { lineLoginApi } from '@/bff/lib/adapters/line-login';
+import { lineLoginApi } from '@/app/_lib/adapters/line-login';
 
 export const lineLoginRequired = createMiddleware(async (context, next) => {
   try {

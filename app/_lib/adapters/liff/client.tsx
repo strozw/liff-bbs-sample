@@ -52,7 +52,7 @@ export function LiffProvider({ children }: { children: React.ReactNode }) {
             setLiffError(error);
           });
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!liffObject) {

@@ -1,4 +1,4 @@
-import { amplifyClient } from '../lib/adapters/amplify';
+import { amplifyClient } from '@/app/_lib/adapters/amplify/server';
 import { Schema } from '@/amplify/data/resource';
 
 export const createComment = async (

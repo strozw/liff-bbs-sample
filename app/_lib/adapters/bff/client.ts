@@ -1,5 +1,5 @@
 import 'client-only';
 import { hc } from 'hono/client';
-import { AppType } from '@/bff/app';
+import { AppType } from '@/app/_lib/server/bff/app';
 
 export const bffApi = hc<AppType>('/');

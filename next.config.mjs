@@ -6,6 +6,17 @@ jiti('./env/client');
 jiti('./env/server');
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  async redirects() {
+    return [
+      {
+        destination: '/threads',
+        permanent: true,
+        source: '/',
+      },
+    ];
+  },
+};
 
 export default nextConfig;

@@ -8,10 +8,10 @@ import {
 } from '@/app/_lib/components/card';
 import { CommentCreationForm } from '@/app/_lib/features/comment-creation/commponent';
 import { CommentList } from '@/app/_lib/features/comment-list/components';
-import { ThreadInteractors } from '@/bff/interactors';
+import { getThreadOutline } from '@/app/_lib/interactors/thread-interactors';
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const thread = await ThreadInteractors.getThreadOutline(params.id);
+  const thread = await getThreadOutline(params.id);
 
   if (!thread) {
     throw new Error('non existend thread');

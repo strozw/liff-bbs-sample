@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
-import { threadsApp } from './threads';
 import { lineLoginRequired } from './middleware/line-login-required';
+import { threadsApp } from './threads';
 
 export const runtime = 'edge';
 

@@ -1,8 +1,10 @@
-import { amplifyClient } from '../lib/adapters/amplify';
+import { amplifyClient } from '@/app/_lib/adapters/amplify/server';
 import { Schema } from '@/amplify/data/resource';
 
 export const createThread = async (
-  payload: Required<Pick<Schema['Thread']['type'], 'description' | 'title' | 'userId'>>,
+  payload: Required<
+    Pick<Schema['Thread']['type'], 'description' | 'title' | 'userId'>
+  >,
 ) => {
   const res = await amplifyClient.models.Thread.create(payload);
 

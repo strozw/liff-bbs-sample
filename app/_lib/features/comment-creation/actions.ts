@@ -4,7 +4,8 @@ import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { getLineAccessTokenFromCookie } from '../../adapters/liff/server';
-import { CommentInteractors, UserInteractors } from '../../adapters/bff/server';
+import { getUserByCurrentLineAccount } from '../../interactors/user-interactors';
+import { createComment } from '../../interactors/comment-interactors';
 import { commentCreationSchema } from './schema';
 
 export const commentCreationAction = async (
@@ -20,9 +21,9 @@ export const commentCreationAction = async (
 
   const token = getLineAccessTokenFromCookie();
 
-  const user = await UserInteractors.getUserByCurrentLineAccount(token);
+  const user = await getUserByCurrentLineAccount(token);
 
-  await CommentInteractors.createComment({
+  await createComment({
     ...submission.value,
     threadId,
     userId: user.id,

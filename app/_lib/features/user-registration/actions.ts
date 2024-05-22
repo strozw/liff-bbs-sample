@@ -4,7 +4,7 @@ import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
 
 import { userRegistrationSchema } from './schema';
-import { UserInteractors } from '@/bff/interactors';
+import { createUser } from '@/app/_lib/interactors/user-interactors';
 import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
 
 export const userRegistrationAction = async (
@@ -21,7 +21,7 @@ export const userRegistrationAction = async (
 
   const lineAccessToken = getLineAccessTokenFromCookie();
 
-  await UserInteractors.createUser(lineAccessToken, {
+  await createUser(lineAccessToken, {
     name: submission.value.name,
   });
 

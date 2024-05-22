@@ -1,12 +1,9 @@
 import { redirect } from 'next/navigation';
-import { UserInteractors } from '@/app/_lib/adapters/bff/server';
-import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
 import { LayoutProps } from '@/app/_lib/utils/types';
+import { getCurrentUser } from '@/app/_lib/interactors/user-interactors';
 
 export default async function Layout({ children }: LayoutProps) {
-  const accessToken = getLineAccessTokenFromCookie();
-
-  const user = await UserInteractors.getUserByCurrentLineAccount(accessToken);
+  const user = await getCurrentUser();
 
   if (user) {
     redirect('/threads');

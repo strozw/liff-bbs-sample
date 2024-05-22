@@ -1,15 +1,15 @@
 import ky from 'ky';
 
 type VerifyAccessTokenResBody = {
-  scope: 'profile';
   client_id: string;
   expires_in: number;
+  scope: 'profile';
 };
 
 type UserInfoResBody = {
-  sub: string;
   name: string;
   picture: string;
+  sub: string;
 };
 
 const client = ky.create({
@@ -18,17 +18,6 @@ const client = ky.create({
 
 export const lineLoginApi = {
   client,
-
-  /**
-   * @see {@url https://developers.line.biz/ja/reference/line-login/#verify-access-token}
-   */
-  verify: async ({ accessToken }: { accessToken: string }) => {
-    return client
-      .get('verify', {
-        searchParams: { access_token: accessToken },
-      })
-      .json<VerifyAccessTokenResBody>();
-  },
 
   /**
    * @see {@url https://developers.line.biz/ja/reference/line-login/#userinfo}
@@ -41,5 +30,16 @@ export const lineLoginApi = {
         },
       })
       .json<UserInfoResBody>();
+  },
+
+  /**
+   * @see {@url https://developers.line.biz/ja/reference/line-login/#verify-access-token}
+   */
+  verify: async ({ accessToken }: { accessToken: string }) => {
+    return client
+      .get('verify', {
+        searchParams: { access_token: accessToken },
+      })
+      .json<VerifyAccessTokenResBody>();
   },
 };

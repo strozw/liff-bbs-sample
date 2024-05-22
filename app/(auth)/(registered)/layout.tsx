@@ -1,20 +1,15 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { UserInteractors } from '@/app/_lib/adapters/bff/server';
-import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
 import { Button, buttonVariants } from '@/app/_lib/components/button';
 import { HomeIcon, PlusIcon, UserIcon } from '@/app/_lib/components/icons';
 import { LayoutProps } from '@/app/_lib/utils/types';
+import { getCurrentUser } from '@/app/_lib/interactors/user-interactors';
 
 export default async function Layout({ children }: LayoutProps) {
-  const accessToken = getLineAccessTokenFromCookie();
-
-  const user = await UserInteractors.getUserByCurrentLineAccount(
-    String(accessToken ?? ''),
-  );
+  const user = await getCurrentUser();
 
   if (!user) {
-    redirect('/setup');
+    return redirect('/registration');
   }
 
   return (

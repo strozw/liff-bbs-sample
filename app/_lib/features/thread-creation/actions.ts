@@ -2,9 +2,10 @@
 
 import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
-import { getLineAccessTokenFromCookie } from '../../adapters/liff/server';
+import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
 import { threadCreationSchema } from '@/app/_lib/features/thread-creation/schema';
-import { ThreadInteractors, UserInteractors } from '@/bff/interactors';
+import { getUserByCurrentLineAccount } from '@/app/_lib/interactors/user-interactors';
+import { createThread } from '@/app/_lib/interactors/thread-interactors';
 
 export const threadCreationAction = async (
   _prevState: unknown,
@@ -18,9 +19,9 @@ export const threadCreationAction = async (
 
   const token = getLineAccessTokenFromCookie();
 
-  const user = await UserInteractors.getUserByCurrentLineAccount(token);
+  const user = await getUserByCurrentLineAccount(token);
 
-  const data = await ThreadInteractors.createThread({
+  const data = await createThread({
     ...submission.value,
     userId: user.id,
   });
