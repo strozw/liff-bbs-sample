@@ -13,7 +13,7 @@
     "check": "concurrently -c 'auto' 'npm:check:*'",
     "fix:eslint": "next lint --fix",
     "fix:prettier": "prettier --write .",
-    "fix": "pnpm fix:eslint && pnpm fix:prettier"
+    "fix": "npm run fix:eslint && npm run fix:prettier"
   },
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "1.1.8",
