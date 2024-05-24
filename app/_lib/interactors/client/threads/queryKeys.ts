@@ -1,6 +1,6 @@
-import { threadCommentsKeys } from '../threads-comments';
+import { threadCommentsQueryKeys } from '../threads-comments/queryKeys';
 
 export const threadsQueryKeys = {
   all: ['threads'] as const,
-  latest: [...threadCommentsKeys.all, 'latest'],
+  latest: [...threadCommentsQueryKeys.all, 'latest'],
 };

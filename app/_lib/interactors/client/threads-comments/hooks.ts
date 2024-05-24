@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { threadCommentsKeys } from './queryKeys';
+import { threadCommentsQueryKeys } from './queryKeys';
 import { fetchThreadComments } from './queryFns';
 
 export const useThreadsComments = (threadId: string) =>
@@ -8,7 +8,7 @@ export const useThreadsComments = (threadId: string) =>
     useMemo(
       () => ({
         queryFn: fetchThreadComments.bind(null, threadId),
-        queryKey: threadCommentsKeys.threadsComments(threadId),
+        queryKey: threadCommentsQueryKeys.threadsComments(threadId),
       }),
       [threadId],
     ),

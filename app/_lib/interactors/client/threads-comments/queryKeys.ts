@@ -1,14 +1,14 @@
-import { commentsQueryKeys } from '../comments';
-import { threadsQueryKeys } from '../threads';
+import { commentsQueryKeys } from '../comments/queryKeys';
+import { threadsQueryKeys } from '../threads/queryKeys';
 
-export const threadCommentsKeys = {
+export const threadCommentsQueryKeys = {
   all: ['threads-comments'] as const,
 
   threadsComments(threadId: string) {
     return [
       ...threadsQueryKeys.all,
       ...commentsQueryKeys.all,
-      ...threadCommentsKeys.all,
+      ...threadCommentsQueryKeys.all,
       threadId,
     ] as const;
   },

@@ -2,7 +2,13 @@
 
 import 'client-only';
 import type { Liff } from '@line/liff';
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useCookies } from 'react-cookie';
 import { clientEnv } from '@/env/client';
 
@@ -12,7 +18,7 @@ export function useLiff() {
   return useContext(LiffContext);
 }
 
-export function LiffProvider({ children }: { children: React.ReactNode }) {
+export const LiffProvider = ({ children }: PropsWithChildren) => {
   const [, setCookie] = useCookies();
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
   const [, setLiffError] = useState<Error | null>(null);
@@ -62,4 +68,4 @@ export function LiffProvider({ children }: { children: React.ReactNode }) {
   return (
     <LiffContext.Provider value={liffObject}>{children}</LiffContext.Provider>
   );
-}
+};

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import '@/app/_lib/components/globals.css';
 import { Noto_Sans_JP } from 'next/font/google';
-import { ApiStoreProvider } from './_lib/store/client/api';
+import { AppShell } from './_lib/app-shell';
 
 /**
  * `fetch` の `cache` option が見指定のときに `no-store` を設定
@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={noto.className}>
-        <ApiStoreProvider>{children}</ApiStoreProvider>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
