@@ -1,4 +1,4 @@
-import { bffApi } from '@/app/_lib/adapters/bff/client';
+import { bffApi } from '@/app/_lib/providers/bff/client';
 
 export const fetchLatestThreads = async () => {
   const res = await bffApi.api.threads.recent.$get();

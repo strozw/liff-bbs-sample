@@ -3,7 +3,7 @@
 import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { getLineAccessTokenFromCookie } from '../../adapters/liff/server';
+import { getLineAccessTokenFromCookie } from '../../providers/liff/server';
 import { getUserByCurrentLineAccount } from '../../interactors/server/users';
 import { createComment } from '../../interactors/server/comments';
 import { commentCreationSchema } from './schema';

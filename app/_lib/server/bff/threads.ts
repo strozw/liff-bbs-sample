@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { amplifyClient } from '../../adapters/amplify/server';
+import { amplifyClient } from '@/app/_lib/providers/amplify/server';
 
 export const threadsApp = new Hono()
   .get('/recent', async (c) => {

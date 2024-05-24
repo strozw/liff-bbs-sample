@@ -1,8 +1,8 @@
 import React from 'react';
-import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
+import { getLineAccessTokenFromCookie } from '@/app/_lib/providers/liff/server';
 import { Schema } from '@/amplify/data/resource';
-import { amplifyClient } from '@/app/_lib/adapters/amplify/server';
-import { lineLoginApi } from '@/app/_lib/adapters/line-login';
+import { amplifyClient } from '@/app/_lib/providers/amplify/server';
+import { lineLoginApi } from '@/app/_lib/providers/line-login';
 
 export const getUserByCurrentLineAccount = async (lineAccessToken: string) => {
   const lineProfile = await lineLoginApi.userinfo({

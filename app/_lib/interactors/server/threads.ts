@@ -1,4 +1,4 @@
-import { amplifyClient } from '@/app/_lib/adapters/amplify/server';
+import { amplifyClient } from '@/app/_lib/providers/amplify/server';
 import { Schema } from '@/amplify/data/resource';
 
 export const createThread = async (

@@ -7,7 +7,7 @@ amplify/ .... Infrastructure Code
 
 app/ ... Frontend by Next.js App Router
   _lib/
-    adapters/ ... External service's adapter for Next.js App
+    providers/ ... External service's provider for Next.js App
 
     components/ ... Generic components with no interest in the business domain
 

@@ -2,7 +2,7 @@
 
 import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
-import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
+import { getLineAccessTokenFromCookie } from '@/app/_lib/providers/liff/server';
 import { threadCreationSchema } from '@/app/_lib/features/thread-creation-form/schema';
 import { getUserByCurrentLineAccount } from '@/app/_lib/interactors/server/users';
 import { createThread } from '@/app/_lib/interactors/server/threads';

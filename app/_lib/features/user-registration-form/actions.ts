@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 import { userRegistrationSchema } from './schema';
 import { createUser } from '@/app/_lib/interactors/server/users';
-import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
+import { getLineAccessTokenFromCookie } from '@/app/_lib/providers/liff/server';
 
 export const userRegistrationAction = async (
   _prevState: unknown,
