@@ -1,9 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
 import { Card } from '../../components/card';
-import { bffApi } from '../../adapters/bff/client';
+import { useLatestThreads } from '../../interactors/client/threads/hooks';
 import {
   Avatar,
   AvatarFallback,
@@ -11,17 +10,8 @@ import {
 } from '@/app/_lib/components/avatar';
 import { MessageCircleIcon } from '@/app/_lib/components/icons';
 
-export const ThreadList = () => {
-  const { data, isSuccess } = useQuery({
-    queryFn: async () => {
-      const res = await bffApi.api.threads.recent.$get();
-
-      const data = await res.json();
-
-      return data;
-    },
-    queryKey: ['threads'],
-  });
+export const LatestThreadList = () => {
+  const { data, isSuccess } = useLatestThreads();
 
   return (
     <div>

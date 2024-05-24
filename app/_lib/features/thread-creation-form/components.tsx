@@ -4,12 +4,12 @@ import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { parseWithZod } from '@conform-to/zod';
 import { FC } from 'react';
 import { useFormState } from 'react-dom';
+import { threadCreationAction } from './actions';
+import { threadCreationSchema } from './schema';
 import { Button } from '@/app/_lib/components/button';
 import { Input } from '@/app/_lib/components/input';
 import { Label } from '@/app/_lib/components/label';
 import { Textarea } from '@/app/_lib/components/textarea';
-import { threadCreationAction } from '@/app/_lib/features/thread-creation/actions';
-import { threadCreationSchema } from '@/app/_lib/features/thread-creation/schema';
 
 export const ThreadCreationForm: FC = () => {
   const [lastResult, action] = useFormState(threadCreationAction, undefined);

@@ -1,4 +1,4 @@
-import { UserRegistrationForm } from '@/app/_lib/features/user-registration/components';
+import { UserRegistrationForm } from '@/app/_lib/features/user-registration-form/components';
 
 /**
  * v0 by Vercel.

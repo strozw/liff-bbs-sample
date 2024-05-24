@@ -4,7 +4,7 @@ import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
 
 import { userRegistrationSchema } from './schema';
-import { createUser } from '@/app/_lib/interactors/user-interactors';
+import { createUser } from '@/app/_lib/interactors/server/users';
 import { getLineAccessTokenFromCookie } from '@/app/_lib/adapters/liff/server';
 
 export const userRegistrationAction = async (

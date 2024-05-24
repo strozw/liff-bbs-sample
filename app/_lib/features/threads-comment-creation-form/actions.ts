@@ -4,8 +4,8 @@ import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { getLineAccessTokenFromCookie } from '../../adapters/liff/server';
-import { getUserByCurrentLineAccount } from '../../interactors/user-interactors';
-import { createComment } from '../../interactors/comment-interactors';
+import { getUserByCurrentLineAccount } from '../../interactors/server/users';
+import { createComment } from '../../interactors/server/comments';
 import { commentCreationSchema } from './schema';
 
 export const commentCreationAction = async (

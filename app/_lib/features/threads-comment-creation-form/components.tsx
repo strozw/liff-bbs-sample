@@ -9,7 +9,11 @@ import { commentCreationSchema } from './schema';
 import { Button } from '@/app/_lib/components/button';
 import { Textarea } from '@/app/_lib/components/textarea';
 
-export const CommentCreationForm = ({ threadId }: { threadId: string }) => {
+export const ThreadsCommentCreationForm = ({
+  threadId,
+}: {
+  threadId: string;
+}) => {
   const queryClient = useQueryClient();
 
   const boundAction = commentCreationAction.bind(null, threadId);

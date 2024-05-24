@@ -1,24 +1,14 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import { bffApi } from '@/app/_lib/adapters/bff/client';
+import { useThreadsComments } from '../../interactors/client/threads-comments/hooks';
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from '@/app/_lib/components/avatar';
 
-export const CommentList = ({ threadId }: { threadId: string }) => {
-  const { data } = useQuery({
-    queryFn: async () => {
-      const res = await bffApi.api.threads[':id'].comments.$get({
-        param: { id: threadId },
-      });
-
-      return await res.json();
-    },
-    queryKey: ['comments', threadId],
-  });
+export const ThreadsCommentList = ({ threadId }: { threadId: string }) => {
+  const { data } = useThreadsComments(threadId);
 
   const comments = data?.comments;
 

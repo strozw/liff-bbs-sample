@@ -1,5 +1,5 @@
 import { createMiddleware } from 'hono/factory';
-import { getCurrentUser } from '@/app/_lib/interactors/user-interactors';
+import { getCurrentUser } from '@/app/_lib/interactors/server/users';
 
 export const lineLoginRequired = createMiddleware(async (context, next) => {
   try {

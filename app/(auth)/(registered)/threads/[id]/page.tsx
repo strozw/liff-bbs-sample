@@ -6,9 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/_lib/components/card';
-import { CommentCreationForm } from '@/app/_lib/features/comment-creation/commponent';
-import { CommentList } from '@/app/_lib/features/comment-list/components';
-import { getThreadOutline } from '@/app/_lib/interactors/thread-interactors';
+import { ThreadsCommentCreationForm } from '@/app/_lib/features/threads-comment-creation-form/components';
+import { ThreadsCommentList } from '@/app/_lib/features/threads-comment-list/components';
+import { getThreadOutline } from '@/app/_lib/interactors/server/threads';
 
 export default async function Page({ params }: { params: { id: string } }) {
   const thread = await getThreadOutline(params.id);
@@ -26,10 +26,10 @@ export default async function Page({ params }: { params: { id: string } }) {
       </CardHeader>
 
       <CardContent>
-        <CommentList threadId={thread.id} />
+        <ThreadsCommentList threadId={thread.id} />
       </CardContent>
       <CardFooter>
-        <CommentCreationForm threadId={thread?.id} />
+        <ThreadsCommentCreationForm threadId={thread?.id} />
       </CardFooter>
     </Card>
   );

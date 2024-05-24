@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { LayoutProps } from '@/app/_lib/utils/types';
-import { getCurrentUser } from '@/app/_lib/interactors/user-interactors';
+import { getCurrentUser } from '@/app/_lib/interactors/server/users';
 
 export default async function Layout({ children }: LayoutProps) {
   const user = await getCurrentUser();

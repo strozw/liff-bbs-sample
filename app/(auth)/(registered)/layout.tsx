@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { Button, buttonVariants } from '@/app/_lib/components/button';
 import { HomeIcon, PlusIcon, UserIcon } from '@/app/_lib/components/icons';
 import { LayoutProps } from '@/app/_lib/utils/types';
-import { getCurrentUser } from '@/app/_lib/interactors/user-interactors';
+import { getCurrentUser } from '@/app/_lib/interactors/server/users';
 
 export default async function Layout({ children }: LayoutProps) {
   const user = await getCurrentUser();

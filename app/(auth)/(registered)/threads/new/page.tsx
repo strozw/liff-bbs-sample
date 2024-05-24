@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/_lib/components/card';
-import { ThreadCreationForm } from '@/app/_lib/features/thread-creation/components';
+import { ThreadCreationForm } from '@/app/_lib/features/thread-creation-form/components';
 
 export default function Page() {
   return (

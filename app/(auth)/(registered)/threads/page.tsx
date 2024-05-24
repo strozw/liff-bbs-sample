@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/_lib/components/card';
-import { ThreadList } from '@/app/_lib/features/thread-list/components';
+import { LatestThreadList } from '@/app/_lib/features/latest-thread-list/components';
 
 export default function Page() {
   return (
@@ -19,7 +19,7 @@ export default function Page() {
       </CardHeader>
 
       <CardContent>
-        <ThreadList />
+        <LatestThreadList />
       </CardContent>
     </Card>
   );
