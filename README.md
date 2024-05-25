@@ -11,6 +11,10 @@
 amplify/ .... IaC
 
 src/
+  env/
+    client-env.ts ... Client Component むけの環境変数を参照するためのもの
+    server-env.ts ... Server Component むけの環境変数を参照するためのもの
+
   utils/
     types.ts ... utilit types
 
