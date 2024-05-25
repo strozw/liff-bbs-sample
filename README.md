@@ -13,10 +13,10 @@
 amplify/ .... IaC
 
 src/
-  utils/
+  utils/ ... 環境に依存せず利用できる関数や、型を定義するレイヤー
     types.ts ... utilit types
 
-  domain/ ... ドメインオブジェクトや、その型を定義する
+  domain/ ... ドメインオブジェクトや、その型を定義するレイヤー
     [slice].ts
 
   infra/ ... 外部リソースへの操作を定義するレイヤー
