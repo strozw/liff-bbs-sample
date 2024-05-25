@@ -1,6 +1,3 @@
-'use client';
-
-import 'client-only';
 import type { Liff } from '@line/liff';
 import {
   PropsWithChildren,
@@ -9,8 +6,8 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { useCookies } from 'react-cookie';
-import { clientEnv } from '@/env/client';
+import { setLiffAccessTokenToCookie } from './cookie';
+import { clientEnv } from '@/infra/client/env';
 
 const LiffContext = createContext<Liff | null>(null);
 
@@ -19,42 +16,39 @@ export function useLiff() {
 }
 
 export const LiffProvider = ({ children }: PropsWithChildren) => {
-  const [, setCookie] = useCookies();
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
   const [, setLiffError] = useState<Error | null>(null);
 
-  // Execute liff.init() when the app is initialized
   useEffect(() => {
-    // to avoid `window is not defined` error
     void import('@line/liff')
       .then((liff) => liff.default)
       .then((liff) => {
-        console.log('LIFF init...');
         liff
           .init({
             liffId: clientEnv.NEXT_PUBLIC_LIFF_ID,
             withLoginOnExternalBrowser: true,
           })
           .then(() => {
-            console.log('LIFF init succeeded.');
-            console.log(liff.getOS());
-
             setLiffObject(liff);
 
             const accessToken = liff.getAccessToken();
 
-            setCookie(
-              clientEnv.NEXT_PUBLIC_LIFF_ACCESS_TOKEN_COOKIE,
-              accessToken,
-            );
+            if (!accessToken) {
+              throw new Error('LIFF Auth Error');
+            }
 
-            void liff.getProfile().then((prof) => {
-              console.log({ prof });
-            });
+            setLiffAccessTokenToCookie(accessToken);
+
+            liff
+              .getProfile()
+              .then((prof) => {
+                console.log({ prof });
+              })
+              .catch((error) => {
+                throw error;
+              });
           })
           .catch((error: Error) => {
-            console.log('LIFF init failed.');
-            console.error(error);
             setLiffError(error);
           });
       });

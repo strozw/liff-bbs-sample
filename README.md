@@ -4,6 +4,8 @@
 
 - ファイルとディレクトリの名称は kebab-case にする
 - `index.ts` や `index.tsx` は作らない明示的な名前をつける
+- 各レイヤーに公開するモジュールは `[slice].ts` あるいは、`[slicel]/` の一階層目に定義する
+- 外部から参照できるのは各 `[slice]` の一階層目のファイルのみ
 
 ## ディレクトリ構成
 
@@ -11,18 +13,15 @@
 amplify/ .... IaC
 
 src/
-  env/
-    client-env.ts ... Client Component むけの環境変数を参照するためのもの
-    server-env.ts ... Server Component むけの環境変数を参照するためのもの
-
   utils/
     types.ts ... utilit types
 
-  infra/
+  domain/ ... ドメインオブジェクトや、その型を定義する
+    [slice].ts
+
+  infra/ ... 外部リソースへの操作を定義するレイヤー
     client/ ... Client Component の外部サービスを繋ぐ
       [slice].ts ... 提供するサービス事に定義
-
-      async-store.tsx ... Client Component で扱う API 等の非同期の状態を共有するための store を提供
 
     server/ ... Server Component、Server Action、BFF API と外部サーイビスを繋ぐ
       [slice].ts ... 提供するサービス事に定義
@@ -30,7 +29,7 @@ src/
     universal/ ... Client Component、Server Component、Server Action、BFF API と外部サーイビスを繋ぐ
       [slice].ts
 
-  usecase/ ... ビジネスドメインを扱う処理を、Client と Server に分けて定義
+  usecase/ ... ビジネスロジックを定義するレイヤー
     server/ ... Server Component や、Server Action、BFF API 向けに定義。 `infra/server` に依存
       [slice].ts
 
@@ -40,7 +39,7 @@ src/
         queryKeys ... react-query queryKeys.
         queryFns ... react-query queryFns.
 
-  app/ ... Next.js App Router
+  app/ ... アプリケーションレイヤー (View & Controller)
     _/ ... ルーティングに
       components/ ... ビジネスドメインに依存しない機能を提供するコンポーネント
 
