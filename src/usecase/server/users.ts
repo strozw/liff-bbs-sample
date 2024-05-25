@@ -1,5 +1,5 @@
 import React from 'react';
-import { Schema } from 'amplify/data/resource';
+import { Schema } from '@/domain/types';
 import { amplifyClient } from '@/infra/server/amplify';
 import { lineLoginApi } from '@/infra/universal/line-login-api';
 import { getLineAccessTokenFromCookie } from '@/infra/server/cookie';

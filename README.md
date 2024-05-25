@@ -17,14 +17,15 @@ src/
     types.ts ... utilit types
 
   domain/ ... ドメインオブジェクトや、その型を定義するレイヤー
-    [slice].ts
+    types.ts ... 定義した型を集約して公開するファイル
+    [slice].ts ... ドメイン毎に定義
 
   infra/ ... 外部リソースへの操作を定義するレイヤー
     client/ ... Client Component の外部サービスを繋ぐ
-      [slice].ts ... 提供するサービス事に定義
+      [slice].ts ... 提供するリソース事に定義
 
     server/ ... Server Component、Server Action、BFF API と外部サーイビスを繋ぐ
-      [slice].ts ... 提供するサービス事に定義
+      [slice].ts ... 提供するリソース事に定義
 
     universal/ ... Client Component、Server Component、Server Action、BFF API と外部サーイビスを繋ぐ
       [slice].ts
