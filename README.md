@@ -3,39 +3,49 @@
 ## Project Structure
 
 ```
-amplify/ .... Infrastructure Code
+amplify/ .... IaC
 
-app/ ... Frontend by Next.js App Router
-  _lib/
-    providers/ ... External service's provider for Next.js App
+src/
+  utils/
+    types.ts ... utilit types
 
-    components/ ... Generic components with no interest in the business domain
+  infra/
+    client/ ... Client Component の外部サービスを繋ぐ
+      [slice].ts ... 提供するサービス事に定義
 
-    interactors/ ... Use case function for business domain
-      client/ ...
-        [slice]/
-          hooks ... custom react-query hooks
-          queryKeys ... react-query queryKeys.
-          queryFns ... react-query queryFns.
+      async-store.tsx ... Client Component で扱う API 等の非同期の状態を共有するための store を提供
 
-      server/
-        [slice].ts
+    server/ ... Server Component、Server Action、BFF API と外部サーイビスを繋ぐ
+      [slice].ts ... 提供するサービス事に定義
 
-    features/ ... Components and other utilities related to the business domain
+    universal/ ... Client Component、Server Component、Server Action、BFF API と外部サーイビスを繋ぐ
+      [slice].ts
+
+  usecase/ ... ビジネスドメインを扱う処理を、Client と Server に分けて定義
+    server/ ... Server Component や、Server Action、BFF API 向けに定義。 `infra/server` に依存
+      [slice].ts
+
+    client/ ... Client Component 向けに react-query で定義。`infra/client` に依存
       [slice]/
-        actions.ts ... server actions
-        components.tsx
-        components/ ... sub components
-        schemas.ts ... schema for components & server actions
+        hooks ... custom react-query hooks
+        queryKeys ... react-query queryKeys.
+        queryFns ... react-query queryFns.
 
-    server/
-      bff/ ... Backend for Frontend API by Hono in Next.js route handler
-        app.ts ... server app
+  app/ ... Next.js App Router
+    _/ ... ルーティングに
+      components/ ... ビジネスドメインに依存しない機能を提供するコンポーネント
 
-    store/
-      client/
-        api.ts ... store for client side api cache
+      features/ ... ビジネスドメインに依存する機能を提供するコンポーネント
+        [slice]/
+          schemas.ts ... この機能の Action と Component で利用する Data Schema
+          actions.ts ... この機能の Component で利用する Server Action を定義する
+          components.tsx ... 機能として公開する Component を export する
+          components/ ... 公開しない Sub Components
 
-    utils/
-      types.ts ... utilit types
+      servers/ ... Next.js の Route で API を提供する Hono で実装されたサーバー
+        middlewares/ ... Hono の middleware
+        bff-app/ ... Backend for Frontend API
+          app.ts ... server app
+
+     app-shell.tsx ... 全体で利用する shell
 ```
