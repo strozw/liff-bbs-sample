@@ -1,6 +1,11 @@
 # LIFF (LINE Front-end Framework) with Next.js in Amplify Sample
 
-## Project Structure
+## 方針
+
+- ファイルとディレクトリの名称は kebab-case にする
+- `index.ts` や `index.tsx` は作らない明示的な名前をつける
+
+## ディレクトリ構成
 
 ```
 amplify/ .... IaC
