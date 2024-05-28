@@ -1,5 +1,7 @@
 import 'client-only';
+
 import Cookies from 'js-cookie';
+
 import { clientEnv } from './env';
 
 export const setLiffAccessTokenToCookie = (token: string) => {

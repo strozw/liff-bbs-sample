@@ -1,7 +1,7 @@
 'use client';
 
-import { useThreadsComments } from '@/usecase/client/threads-comments/hooks';
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/_/components/avatar';
+import { useThreadsComments } from '@/usecase/client/threads-comments/hooks';
 
 export const ThreadsCommentList = ({ threadId }: { threadId: string }) => {
   const { data } = useThreadsComments(threadId);

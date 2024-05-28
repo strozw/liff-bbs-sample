@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+
 import { amplifyClient } from '@/infra/server/amplify';
 
 export const threadsApp = new Hono()
@@ -19,6 +20,18 @@ export const threadsApp = new Hono()
       nextToken: res.nextToken,
       // FIX: sorting method
       threads: res.data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1)),
+    });
+  })
+  .get('/:id', async (c) => {
+    const res = await amplifyClient.models.Thread.get(
+      { id: c.req.param().id },
+      {
+        selectionSet: ['id', 'title', 'description'],
+      },
+    );
+
+    return c.json({
+      thread: res.data,
     });
   })
   .get('/:id/comments', async (c) => {

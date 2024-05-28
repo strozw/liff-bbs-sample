@@ -7,15 +7,8 @@ jiti('./src/infra/server/env');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async redirects() {
-    return [
-      {
-        destination: '/threads',
-        permanent: true,
-        source: '/',
-      },
-    ];
+  experimental: {
+    instrumentationHook: true,
   },
 };
 

@@ -7,3 +7,11 @@ export const fetchLatestThreads = async () => {
 
   return data;
 };
+
+export const fetchThread = async (id: string) => {
+  const res = await bffApi.api.threads[':id'].$get({ param: { id } });
+
+  const data = await res.json();
+
+  return data.thread;
+};

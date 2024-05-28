@@ -2,13 +2,15 @@
 
 import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { parseWithZod } from '@conform-to/zod';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useFormState } from 'react-dom';
+
+import { Button } from '@/app/_/components/button';
+import { Input } from '@/app/_/components/input';
+import { Label } from '@/app/_/components/label';
+
 import { userRegistrationAction } from './actions';
 import { userRegistrationSchema } from './schema';
-import { Label } from '@/app/_/components/label';
-import { Input } from '@/app/_/components/input';
-import { Button } from '@/app/_/components/button';
 
 export const UserRegistrationForm: FC = () => {
   const [lastResult, action] = useFormState(userRegistrationAction, undefined);

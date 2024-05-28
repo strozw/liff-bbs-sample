@@ -1,8 +1,10 @@
 import { defineBackend } from '@aws-amplify/backend';
-import { auth } from './auth/resource.js';
+import { adminAuth } from './auth/resource.js';
 import { data } from './data/resource.js';
+import { mainStorage } from './storage/resource.js';
 
 defineBackend({
-  auth,
+  admin_auth: adminAuth,
   data,
+  main_storage: mainStorage,
 });

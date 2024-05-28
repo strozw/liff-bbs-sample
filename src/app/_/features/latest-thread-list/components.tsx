@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Card } from '@/app/_/components/card';
-import { useLatestThreads } from '@/usecase/client/threads/hooks';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/_/components/avatar';
+import { Card } from '@/app/_/components/card';
 import { MessageCircleIcon } from '@/app/_/components/icons';
+import { useLatestThreads } from '@/usecase/client/threads/hooks';
 
 export const LatestThreadList = () => {
   const { data, isSuccess } = useLatestThreads();

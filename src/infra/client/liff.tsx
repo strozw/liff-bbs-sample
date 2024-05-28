@@ -1,13 +1,17 @@
+'use client';
 import type { Liff } from '@line/liff';
+import type {
+  PropsWithChildren} from 'react';
 import {
-  PropsWithChildren,
   createContext,
   useContext,
   useEffect,
   useState,
 } from 'react';
-import { setLiffAccessTokenToCookie } from './cookie';
+
 import { clientEnv } from '@/infra/client/env';
+
+import { setLiffAccessTokenToCookie } from './cookie';
 
 const LiffContext = createContext<Liff | null>(null);
 

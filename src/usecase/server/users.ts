@@ -1,10 +1,13 @@
 import React from 'react';
-import { Schema } from '@/domain/types';
+
+import type { Schema } from '@/domain/types';
 import { amplifyClient } from '@/infra/server/amplify';
-import { lineLoginApi } from '@/infra/universal/line-login-api';
 import { getLineAccessTokenFromCookie } from '@/infra/server/cookie';
+import { lineLoginApi } from '@/infra/universal/line-login-api';
 
 export const getUserByCurrentLineAccount = async (lineAccessToken: string) => {
+  console.log({ lineAccessToken });
+
   const lineProfile = await lineLoginApi.userinfo({
     accessToken: lineAccessToken,
   });
@@ -13,7 +16,7 @@ export const getUserByCurrentLineAccount = async (lineAccessToken: string) => {
     {
       lineUserId: lineProfile.sub,
     },
-    { selectionSet: ['id', 'name', 'lineUserId'] },
+    { selectionSet: ['id', 'name'] },
   );
 
   const user = res.data[0];

@@ -18,7 +18,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  plugins: ['@stylistic'],
+  plugins: ['@stylistic', 'simple-import-sort'],
   root: true,
   rules: {
     '@stylistic/padding-line-between-statements': [
@@ -44,8 +44,27 @@ module.exports = {
         prev: '*',
       },
     ],
-    'import/order': 'error',
+
+    // `import` と `import type` を分ける
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        fixStyle: 'separate-type-imports',
+        prefer: 'type-imports',
+      },
+    ],
+
+    // `eslint-plugin-import` よりも、広範囲かつ望ましいソートが可能な
+    // `import type` を同一パスの `import` の上に配置する
+    'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
     'perfectionist/sort-imports': 'off',
-    'sort-imports': ['error', { ignoreDeclarationSort: true }],
+
+    'simple-import-sort/exports': 'error',
+
+    // `eslint-plugin-simple-import-sort` で勧められている設定を指定
+    'simple-import-sort/imports': 'error',
   },
 };

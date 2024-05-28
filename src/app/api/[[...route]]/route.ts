@@ -1,4 +1,5 @@
 import { handle } from 'hono/vercel';
+
 import { app } from '@/app/_/servers/bff-app/app';
 
 export const GET = handle(app);

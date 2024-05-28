@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+
 import { serverEnv } from '@/infra/server/env';
 
 export const getLineAccessTokenFromCookie = () =>

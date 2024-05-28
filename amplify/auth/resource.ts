@@ -5,7 +5,7 @@ import { defineAuth } from '@aws-amplify/backend';
  * When used alongside data, it is automatically configured as an auth provider for data
  * @see https://docs.amplify.aws/gen2/build-a-backend/auth
  */
-export const auth = defineAuth({
+export const adminAuth = defineAuth({
   loginWith: {
     email: true,
     // externalProviders: {
@@ -65,7 +65,9 @@ export const auth = defineAuth({
    * @see https://docs.amplify.aws/gen2/build-a-backend/auth/manage-mfa
    */
   multifactor: {
-    mode: 'OFF',
+    mode: 'OPTIONAL',
+    sms: true,
+    totp: true,
   },
 
   // userAttributes: {

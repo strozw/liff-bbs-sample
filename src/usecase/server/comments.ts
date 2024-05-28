@@ -1,5 +1,5 @@
+import type { Schema } from '@/domain/types';
 import { amplifyClient } from '@/infra/server/amplify';
-import { Schema } from '@/domain/types';
 
 export const createComment = async (
   payload: Required<

@@ -1,6 +1,8 @@
 import { Hono } from 'hono';
+
+import { authMiddleware } from './middlewares/auth-middleware';
 import { threadsApp } from './threads';
-import { lineLoginRequired } from '@/app/_/servers/middlewares/line-login-required';
+import { usersApp } from './users';
 
 declare module 'hono' {
   interface ContextVariableMap {
@@ -14,8 +16,8 @@ declare module 'hono' {
 
 export const app = new Hono().basePath('/api');
 
-app.use('/threads/*', lineLoginRequired);
+app.use('/*', authMiddleware);
 
-const route = app.route('/threads', threadsApp);
+const route = app.route('/users', usersApp).route('/threads', threadsApp);
 
 export type AppType = typeof route;

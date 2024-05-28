@@ -1,3 +1,4 @@
+'use client';
 import {
   Card,
   CardContent,
@@ -8,16 +9,12 @@ import {
 } from '@/app/_/components/card';
 import { ThreadsCommentCreationForm } from '@/app/_/features/threads-comment-creation-form/components';
 import { ThreadsCommentList } from '@/app/_/features/threads-comment-list/components';
-import { getThreadOutline } from '@/usecase/server/threads';
+import { useThread } from '@/usecase/client/threads/hooks';
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const thread = await getThreadOutline(params.id);
+export default function Page({ params }: { params: { id: string } }) {
+  const { data: thread, isSuccess } = useThread(params.id);
 
-  if (!thread) {
-    throw new Error('non existend thread');
-  }
-
-  return (
+  return isSuccess ? (
     <Card>
       <CardHeader>
         <CardTitle>{thread?.title}</CardTitle>
@@ -28,9 +25,10 @@ export default async function Page({ params }: { params: { id: string } }) {
       <CardContent>
         <ThreadsCommentList threadId={thread.id} />
       </CardContent>
+
       <CardFooter>
         <ThreadsCommentCreationForm threadId={thread?.id} />
       </CardFooter>
     </Card>
-  );
+  ) : null;
 }

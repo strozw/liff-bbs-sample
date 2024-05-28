@@ -1,13 +1,10 @@
 import { createMiddleware } from 'hono/factory';
+
 import { getCurrentUser } from '@/usecase/server/users';
 
-export const lineLoginRequired = createMiddleware(async (context, next) => {
+export const authMiddleware = createMiddleware(async (context, next) => {
   try {
     const user = await getCurrentUser();
-
-    if (!user) {
-      throw new Error('access token is nothing');
-    }
 
     context.set('currentUser', user);
 

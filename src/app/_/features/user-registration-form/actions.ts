@@ -3,9 +3,10 @@
 import { parseWithZod } from '@conform-to/zod';
 import { redirect } from 'next/navigation';
 
-import { userRegistrationSchema } from './schema';
 import { getLineAccessTokenFromCookie } from '@/infra/server/cookie';
 import { createUser } from '@/usecase/server/users';
+
+import { userRegistrationSchema } from './schema';
 
 export const userRegistrationAction = async (
   _prevState: unknown,

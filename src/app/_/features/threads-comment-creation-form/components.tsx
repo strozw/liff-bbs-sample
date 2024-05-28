@@ -3,10 +3,13 @@ import { getFormProps, getTextareaProps, useForm } from '@conform-to/react';
 import { parseWithZod } from '@conform-to/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { useFormState } from 'react-dom';
-import { commentCreationAction } from './actions';
-import { commentCreationSchema } from './schemas';
+
 import { Button } from '@/app/_/components/button';
 import { Textarea } from '@/app/_/components/textarea';
+import { threadCommentsQueryKeys } from '@/usecase/client/threads-comments/queryKeys';
+
+import { commentCreationAction } from './actions';
+import { commentCreationSchema } from './schemas';
 
 export const ThreadsCommentCreationForm = ({
   threadId,
@@ -19,7 +22,9 @@ export const ThreadsCommentCreationForm = ({
     async (state: unknown, payload: FormData) => {
       const result = await commentCreationAction(threadId, state, payload);
 
-      void queryClient.invalidateQueries({ queryKey: ['comments'] });
+      void queryClient.invalidateQueries({
+        queryKey: threadCommentsQueryKeys.threadsComments(threadId),
+      });
 
       return result;
     },

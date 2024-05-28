@@ -1,5 +1,5 @@
 /**
- * @type {import('prettier').ParserOptions}
+ * @type {import('prettier').Config}
  */
 export default {
   singleQuote: true,

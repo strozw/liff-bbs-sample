@@ -1,12 +1,14 @@
 'use server';
 
 import { parseWithZod } from '@conform-to/zod';
-import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { commentCreationSchema } from './schemas';
-import { getUserByCurrentLineAccount } from '@/usecase/server/users';
-import { createComment } from '@/usecase/server/comments';
+import { redirect } from 'next/navigation';
+
 import { getLineAccessTokenFromCookie } from '@/infra/server/cookie';
+import { createComment } from '@/usecase/server/comments';
+import { getUserByCurrentLineAccount } from '@/usecase/server/users';
+
+import { commentCreationSchema } from './schemas';
 
 export const commentCreationAction = async (
   threadId: string,
