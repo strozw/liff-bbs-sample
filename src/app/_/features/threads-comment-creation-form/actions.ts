@@ -1,7 +1,6 @@
 'use server';
 
 import { parseWithZod } from '@conform-to/zod';
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { getLineAccessTokenFromCookie } from '@/infra/server/cookie';
@@ -30,8 +29,6 @@ export const commentCreationAction = async (
     threadId,
     userId: user.id,
   });
-
-  revalidatePath(`/threads/${threadId}`);
 
   redirect(`/threads/${threadId}`);
 };

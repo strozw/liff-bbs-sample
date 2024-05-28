@@ -22,13 +22,17 @@ export default function Page({ params }: { params: { id: string } }) {
         <CardDescription>{thread?.description}</CardDescription>
       </CardHeader>
 
-      <CardContent>
-        <ThreadsCommentList threadId={thread.id} />
-      </CardContent>
+      {!!thread?.id && (
+        <>
+          <CardContent>
+            <ThreadsCommentList threadId={thread.id} />
+          </CardContent>
 
-      <CardFooter>
-        <ThreadsCommentCreationForm threadId={thread?.id} />
-      </CardFooter>
+          <CardFooter>
+            <ThreadsCommentCreationForm threadId={thread?.id} />
+          </CardFooter>
+        </>
+      )}
     </Card>
   ) : null;
 }

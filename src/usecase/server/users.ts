@@ -6,8 +6,6 @@ import { getLineAccessTokenFromCookie } from '@/infra/server/cookie';
 import { lineLoginApi } from '@/infra/universal/line-login-api';
 
 export const getUserByCurrentLineAccount = async (lineAccessToken: string) => {
-  console.log({ lineAccessToken });
-
   const lineProfile = await lineLoginApi.userinfo({
     accessToken: lineAccessToken,
   });

@@ -6,8 +6,7 @@ import { Noto_Sans_JP } from 'next/font/google';
 import { AppShell } from '@/app/_/app-shell';
 
 /**
- * `fetch` の `cache` option が見指定のときに `no-store` を設定
- * 基本的に、fetch の結果を static file に cache しない
+ * fetch の結果を static file に cache しないようにする
  */
 export const fetchCache = 'default-no-store';
 
