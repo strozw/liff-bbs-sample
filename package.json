@@ -4,9 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --experimental-https",
     "build": "next build --no-lint",
-    "start": "next start",
+    "_start:ngrok": "dotenv -e .env.local -- npx wait-on tcp:3000 && ngrok http 3000 --domain $NGROK_DOMAIN --basic-auth $NGROK_BASIC_AUTH_NAME:$NGROK_BASIC_AUTH_PASS --authtoken $NGROK_AUTHTOKEN",
+    "start:ngrok": "dotenv -e .env.local -- npm run _start:ngrok",
+    "start:next": "next start",
+    "start": "concurrently -c 'auto' 'npm:start:*'",
+    "dev:ngrok": "npm run start:ngrok",
+    "dev:next": "next dev",
+    "dev": "concurrently -c 'auto' 'npm:dev:*'",
     "check:elsint": "next lint",
     "check:prettier": "prettier --check .",
     "check:tsc": "tsc --noEmit",
@@ -37,7 +42,6 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "hono": "4.3.7",
-    "js-cookie": "3.0.5",
     "ky": "1.2.4",
     "lucide-react": "^0.373.0",
     "next": "14.2.2",
@@ -57,6 +61,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "concurrently": "8.2.2",
+    "dotenv-cli": "7.4.2",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.1",
     "eslint-config-prettier": "^9.1.0",
@@ -64,11 +69,14 @@
     "eslint-plugin-simple-import-sort": "12.1.0",
     "eslint-plugin-tailwindcss": "3.15.2",
     "globals": "^15.0.0",
+    "jiti": "1.21.0",
+    "js-cookie": "3.0.5",
     "lefthook": "1.6.11",
     "postcss": "^8",
     "prettier": "3.2.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.2",
-    "typescript-eslint": "^7.7.0"
+    "typescript-eslint": "^7.7.0",
+    "wait-on": "7.2.0"
   }
 }
